@@ -1,0 +1,455 @@
+/* Custom CSS Variables - Midnight Emerald & Amber Theme Tokens */
+:root {
+  --primary: #1b3b36;          /* Deep Midnight Emerald */
+  --primary-hover: #122824;    /* Darker Emerald for Hovers */
+  --accent: #d97706;           /* Warm Amber Gold */
+  --accent-light: #fef3c7;     /* Light Amber Tint for Highlights */
+  --bg-color: #f8fafc;         /* Crisp Light Background */
+  --card-bg: #ffffff;          /* Pure White Card Surface */
+  --text-main: #0f172a;        /* High-Contrast Dark Slate */
+  --text-muted: #475569;       /* Accessible Secondary Text */
+  --border-color: #e2e8f0;     /* Clean Border Boundary */
+  --radius: 12px;              /* Modern Rounded Corner Token */
+}
+
+/* Base Reset & Box Sizing */
+* { 
+  box-sizing: border-box; 
+}
+
+/* Global Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Base Typography & Root Layout */
+body {
+  margin: 0;
+  font-family: "Plus Jakarta Sans", Inter, system-ui, -apple-system, sans-serif;
+  line-height: 1.65;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Screen Reader Only Utility Class for Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus States for Keyboard Navigation */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Headings & Brand Elements */
+h1, h2, h3, .logo {
+  font-family: inherit;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -0.02em;
+}
+
+/* Navigation Header Component - High Z-Index */
+header { 
+  background: var(--primary); 
+  padding: 18px 8%; 
+  position: sticky; 
+  top: 0; 
+  z-index: 1000; /* Ensure header stays above all page elements */
+  box-shadow: 0 4px 20px rgba(27, 59, 54, 0.12);
+}
+
+/* Leaflet Map Z-Index Fix */
+.leaflet-pane, 
+.leaflet-top, 
+.leaflet-bottom {
+  z-index: 400 !important; /* Keep map layers beneath sticky header */
+}
+
+/* Navigation Links Container */
+nav { 
+  display: flex; 
+  gap: 24px; 
+  flex-wrap: wrap; 
+  align-items: center; 
+}
+
+/* Navigation Link Styling */
+nav a { 
+  color: #cbd5e1; 
+  text-decoration: none; 
+  font-weight: 500; 
+  font-size: 0.95rem;
+  padding: 4px 2px;
+  transition: color 0.2s ease;
+}
+
+/* Navigation Link Hover State */
+nav a:hover {
+  color: #ffffff;
+}
+
+/* Active Navigation Item Indicator */
+nav a[aria-current="page"] {
+  color: #ffffff;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 2px;
+}
+
+/* Header Brand Logo Component */
+.logo { 
+  margin-right: auto; 
+  font-size: 1.5rem; 
+  font-weight: 800;
+  color: #ffffff;
+  text-decoration: none;
+  letter-spacing: -0.03em;
+}
+
+/* Main Content Container Layout */
+main { 
+  max-width: 1000px; 
+  margin: 40px auto; 
+  padding: 0 20px; 
+}
+
+/* Hero Section Banner */
+.hero { 
+  background: var(--card-bg); 
+  padding: 60px 30px; 
+  border-radius: var(--radius); 
+  text-align: center; 
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.03);
+}
+
+/* Hero Image Logo */
+.hero-logo {
+  max-width: 140px;
+  height: auto;
+  margin: 0 auto 20px auto;
+  display: block;
+}
+
+/* Button Component Styles */
+.button, button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 22px; 
+  border: 1px solid var(--primary); 
+  border-radius: var(--radius);
+  background: var(--primary); 
+  color: #ffffff; 
+  font-weight: 600;
+  cursor: pointer; 
+  text-decoration: none;
+  font-size: 0.95rem;
+  min-height: 44px;
+  transition: all 0.2s ease;
+}
+
+/* Inline Button Spacing Adjustment */
+button { margin: 4px 4px 4px 0; }
+
+/* Button Hover State */
+button:hover, .button:hover { 
+  background: var(--primary-hover); 
+  border-color: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+/* Disabled Button State */
+button:disabled {
+  background-color: #cbd5e1;
+  border-color: #cbd5e1;
+  color: #ffffff;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Responsive Content Grid Layout */
+.grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
+  gap: 20px; 
+}
+
+/* Reusable Content Card Component */
+.card { 
+  background: var(--card-bg); 
+  padding: 24px; 
+  border-radius: var(--radius); 
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03); 
+}
+
+/* Filter Controls Bar Container */
+.filter-container {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: var(--radius);
+  margin-bottom: 24px;
+  border: 1px solid var(--border-color);
+}
+
+/* Product Card Layout & Structure */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Product Card Hover Effects */
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
+}
+
+/* Product Card Media Thumbnail */
+.product-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  border: 1px solid var(--border-color);
+}
+
+/* Product Card Typography */
+.product-card h3 { 
+  margin: 6px 0 2px 0; 
+  font-size: 1.15rem;
+}
+
+.product-card p {
+  margin: 4px 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* Product Card Pricing Display */
+.price { 
+  font-size: 1.25rem; 
+  font-weight: 700; 
+  color: var(--accent);
+  margin: 6px 0 !important;
+}
+
+/* Generic Inventory Badge Indicator */
+.badge {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+}
+
+/* Low Stock Alert Badge */
+.badge-low {
+  background-color: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+/* Out of Stock Alert Badge */
+.badge-out {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+/* Form Layouts */
+form { 
+  display: grid; 
+  gap: 12px; 
+  max-width: 500px; 
+}
+
+/* Form Input Field Labels */
+label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: 6px;
+  color: var(--text-main);
+}
+
+/* Input & Dropdown Select Fields */
+input, select { 
+  padding: 12px 14px; 
+  border: 1px solid var(--border-color); 
+  border-radius: var(--radius); 
+  font-size: 1rem;
+  background-color: #fff;
+  color: var(--text-main);
+  min-height: 44px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Input Focus States */
+input:focus, select:focus {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.2);
+}
+
+/* Data Table Component */
+table { 
+  width: 100%; 
+  border-collapse: collapse; 
+  background: var(--card-bg); 
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  margin-top: 15px;
+}
+
+/* Data Table Cells */
+th, td { 
+  padding: 14px 16px; 
+  text-align: left; 
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.95rem;
+}
+
+/* Data Table Headers */
+th { 
+  background: #f1f5f9; 
+  color: var(--primary); 
+  font-weight: 700;
+}
+
+/* Data Table Striping Effect */
+tbody tr:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+/* Dynamic Alert/Notification Banners */
+#message {
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* Error Alert Box */
+.alert { 
+  color: #991b1b; 
+  background-color: #fee2e2;
+  border: 1px solid #fecaca;
+}
+
+/* Success Alert Box */
+.success-message {
+  color: #065f46;
+  background-color: #d1fae5;
+  border: 1px solid #a7f3d0;
+}
+
+/* Footer Section Styling */
+footer { 
+  text-align: center; 
+  padding: 28px; 
+  background: var(--primary); 
+  color: #cbd5e1; 
+  font-size: 0.9rem;
+  margin-top: 60px;
+}
+
+/* Inline Navigation Icons */
+nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+nav a svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Cart Trigger Layout Wrapper */
+.cart-button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+/* Cart Floating/Header Action Button */
+.cart-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: var(--accent);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-size: 0.95rem;
+  min-height: 44px;
+  border: 1px solid var(--accent);
+  transition: all 0.2s ease;
+}
+
+.cart-button svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+
+.cart-button:hover {
+  background: #b45309;
+  border-color: #b45309;
+}
+
+/* Quantity Badge Indicator for Shopping Cart */
+.cart-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  padding: 0 4px;
+}
+
+/* Motion Accessibility Override Settings */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

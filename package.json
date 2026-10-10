@@ -1,0 +1,17 @@
+{
+  "name": "ecommerce-order-fulfilment-system",
+  "version": "1.0.0",
+  "description": "DIT2324 Web Technologies group assignment - e-commerce order fulfilment and inventory system",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.22.2",
+    "mysql2": "^3.24.4"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

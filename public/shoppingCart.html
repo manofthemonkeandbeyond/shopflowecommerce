@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopFlow E-Commerce - Shopping Cart & Map</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Leaflet CSS for Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+</head>
+<body>
+<header>
+  <nav aria-label="Main navigation">
+    <a class="logo" href="index.html">ShopFlow</a>
+    <a href="index.html">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Home
+    </a>
+    <a href="products.html">
+      <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      Products
+    </a>
+    <a href="shoppingCart.html" aria-current="page">
+      <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      Shopping Cart
+    </a>
+    <a href="stock.html">
+      <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+      Stock
+    </a>
+    <a href="orders.html">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      Orders
+    </a>
+    <a href="login.html">
+      <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Login
+    </a>
+  </nav>
+</header>
+
+<main>
+  <section id="cart">
+    <h2>Shopping Cart & Delivery Location</h2>
+
+    <div id="cartItems" role="region" aria-live="polite"></div>
+    <p id="cartTotal" role="region" aria-live="polite"><strong>Total: RM 0.00</strong></p>
+
+    <!-- Interactive Map Selection Section -->
+    <div class="card" style="margin-bottom: 20px;">
+      <h3>Select Delivery Location on Map</h3>
+      <p style="font-size: 0.9rem; color: #475569;">Click anywhere on the map or search to set your delivery address automatically.</p>
+      <div style="display:flex; gap:8px; margin-bottom:10px;">
+        <input id="mapSearchInput" type="text" placeholder="Search address/city (e.g., Kuala Lumpur)..." style="flex:1;">
+        <button type="button" id="mapSearchBtn">Search Map</button>
+      </div>
+      <!-- Leaflet Map Container -->
+      <div id="deliveryMap" style="width: 100%; height: 350px; border-radius: 8px; border: 1px solid #e2e8f0;"></div>
+    </div>
+
+    <!-- Enhanced Checkout Form -->
+    <form id="checkoutForm" class="card">
+      <h3>Customer & Shipping Details</h3>
+
+      <label for="customerName">Full Name</label>
+      <input id="customerName" type="text" required placeholder="Enter your full name">
+
+      <label for="customerEmail">Email Address</label>
+      <input id="customerEmail" type="email" required placeholder="name@example.com">
+
+      <label for="countrySelect">Country Code (for Postal Lookup)</label>
+      <select id="countrySelect">
+        <option value="MY">Malaysia (MY)</option>
+        <option value="US">United States (US)</option>
+        <option value="GB">United Kingdom (GB)</option>
+        <option value="CA">Canada (CA)</option>
+        <option value="JP">Japan (JP)</option>
+      </select>
+
+      <label for="postalCode">Postal / Zip Code (Type here to auto-fill region)</label>
+      <input id="postalCode" type="text" placeholder="Enter postal code (e.g., 50450)">
+
+      <label for="shippingAddress">Street Address</label>
+      <input id="shippingAddress" type="text" placeholder="Auto-populated address or enter manually">
+
+      <label for="shippingCity">City</label>
+      <input id="shippingCity" type="text" placeholder="Auto-populated city">
+
+      <label for="shippingState">State / Region</label>
+      <input id="shippingState" type="text" placeholder="Auto-populated state">
+
+      <button type="submit" style="margin-top: 15px;">Place Order</button>
+    </form>
+
+    <p id="message" role="status" aria-live="polite"></p>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2026 ShopFlow E-Commerce</p>
+</footer>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="script.js"></script>
+</body>
+</html>
